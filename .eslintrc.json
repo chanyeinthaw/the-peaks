@@ -19,5 +19,10 @@
         "destructuredArrayIgnorePattern": "^_"
       }
     ]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }
