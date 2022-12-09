@@ -1,9 +1,8 @@
 import React from 'react'
-import { RouterProvider } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 
-import router from 'app/router'
-import { globalCss } from 'app/stitches'
 import Layout from 'app/components/layout/Layout.component'
+import { globalCss } from 'app/stitches'
 
 const globalStyles = globalCss({
   '*': {
@@ -22,7 +21,7 @@ function App() {
 
   return (
     <Layout>
-      <RouterProvider router={router} />
+      <Outlet />
     </Layout>
   )
 }

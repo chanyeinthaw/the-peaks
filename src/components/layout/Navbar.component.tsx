@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 import logo from 'app/assets/logo.svg'
 
 import SearchBox from 'app/components/layout/SearchBox.component'
@@ -7,9 +9,9 @@ const Navbar = () => {
   return (
     <NavbarRoot>
       <div>
-        <a href={'/'}>
+        <Link to={'/'}>
           <img src={logo} alt="logo" />
-        </a>
+        </Link>
         <SearchBox
           css={{
             alignSelf: 'flex-end'
