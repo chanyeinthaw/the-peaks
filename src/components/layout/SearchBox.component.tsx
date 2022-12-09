@@ -69,6 +69,8 @@ const SearchBoxRoot = styled('div', {
   borderBottom: '2px solid $white',
 
   '& > input': {
+    fontFamily: '$sans',
+
     width: '100%',
     backgroundColor: 'transparent',
     padding: '9px 16px',
