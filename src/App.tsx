@@ -3,6 +3,7 @@ import { RouterProvider } from 'react-router-dom'
 
 import router from 'app/router'
 import { globalCss } from 'app/stitches'
+import Layout from 'app/components/layout/Layout.component'
 
 const globalStyles = globalCss({
   '*': {
@@ -19,7 +20,11 @@ const globalStyles = globalCss({
 function App() {
   globalStyles()
 
-  return <RouterProvider router={router} />
+  return (
+    <Layout>
+      <RouterProvider router={router} />
+    </Layout>
+  )
 }
 
 export default App
