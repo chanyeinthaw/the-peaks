@@ -7,7 +7,9 @@ const Navbar = () => {
   return (
     <NavbarRoot>
       <div>
-        <img src={logo} alt="logo" />
+        <a href={'/'}>
+          <img src={logo} alt="logo" />
+        </a>
         <SearchBox
           css={{
             alignSelf: 'flex-end'
