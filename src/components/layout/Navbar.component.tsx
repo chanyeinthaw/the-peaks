@@ -1,15 +1,20 @@
+import { useAtom } from 'jotai'
 import { Link } from 'react-router-dom'
 
 import logo from 'app/assets/logo.svg'
 
-import SearchBox from 'app/components/layout/SearchBox.component'
+import SearchBox, {
+  searchQueryAtom
+} from 'app/components/layout/SearchBox.component'
 import { styled } from 'app/stitches'
 
 const Navbar = () => {
+  const [, setQuery] = useAtom(searchQueryAtom)
+  const resetSearch = () => setQuery('')
   return (
     <NavbarRoot>
       <div>
-        <Link to={'/'}>
+        <Link to={'/'} onClick={resetSearch}>
           <img src={logo} alt="logo" />
         </Link>
         <SearchBox
