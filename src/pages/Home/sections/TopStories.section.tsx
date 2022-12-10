@@ -1,38 +1,12 @@
-import { useAtom } from 'jotai'
-import { Link } from 'react-router-dom'
-
-import sortByAtom, { sortOptions } from 'app/atoms/sortBy.atom'
-import BookmarkIcon from 'app/components/icons/Bookmark.icon'
-import Button from 'app/components/shared/Button.component'
-import Select from 'app/components/shared/Select.component'
+import PageTitle from 'app/components/shared/PageTitle.component'
 import Story from 'app/components/shared/Story.component'
-import Typography from 'app/components/shared/Typography'
-import TitleSection from 'app/components/shared/sections/Title.section'
 import StoryGrid from 'app/pages/Home/components/StoryGrid.component'
 import { styled } from 'app/stitches'
 
 const TopStoriesSection = () => {
-  const [sortBy, setSortBy] = useAtom(sortByAtom)
-
   return (
     <>
-      <TitleSection
-        css={{
-          margin: '44px 0 30px'
-        }}>
-        <Typography variant={'title'}>Top stories</Typography>
-        <div>
-          <Link to={'/bookmarks'}>
-            <Button Icon={BookmarkIcon}>View bookmark</Button>
-          </Link>
-          <Select
-            value={sortBy}
-            items={sortOptions}
-            onChange={(value) => setSortBy(value)}
-          />
-        </div>
-      </TitleSection>
-
+      <PageTitle title={'Top stories'} />
       <TopStoryGrid>
         <div>
           <Story category={'sport'} variant={'lg'} />
