@@ -1,5 +1,3 @@
-import * as Stitches from '@stitches/react'
-
 import { styled } from 'app/stitches'
 
 const Typography = styled('p', {
@@ -50,7 +48,5 @@ const Typography = styled('p', {
     }
   }
 })
-
-export type TypographyVariants = Stitches.VariantProps<typeof Typography>
 
 export default Typography
