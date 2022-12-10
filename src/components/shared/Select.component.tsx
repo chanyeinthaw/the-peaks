@@ -53,6 +53,7 @@ const StyledItem = styled(RSelect.Item, {
   alignItems: 'center',
   justifyContent: 'space-between',
   flexDirection: 'row',
+  cursor: 'pointer',
   '& > *': {
     fontFamily: '$sans'
   },
@@ -63,6 +64,8 @@ const StyledItem = styled(RSelect.Item, {
 })
 
 const SelectTrigger = styled(RSelect.Trigger, {
+  cursor: 'pointer',
+
   width: '300px',
   backgroundColor: 'transparent',
   border: 'none',

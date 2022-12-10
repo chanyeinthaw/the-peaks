@@ -1,20 +1,15 @@
-import { atom, useAtom } from 'jotai'
+import { useAtom } from 'jotai'
+import { Link } from 'react-router-dom'
 
+import sortByAtom, { sortOptions } from 'app/atoms/sortBy.atom'
 import BookmarkIcon from 'app/components/icons/Bookmark.icon'
 import Button from 'app/components/shared/Button.component'
 import Select from 'app/components/shared/Select.component'
 import Story from 'app/components/shared/Story.component'
 import Typography from 'app/components/shared/Typography'
+import TitleSection from 'app/components/shared/sections/Title.section'
 import StoryGrid from 'app/pages/Home/components/StoryGrid.component'
 import { styled } from 'app/stitches'
-
-export const sortByAtom = atom('newest')
-
-const sortOptions = [
-  { label: 'Newest', value: 'newest' },
-  { label: 'Oldest', value: 'oldest' },
-  { label: 'Most Popular', value: 'relevance' }
-]
 
 const TopStoriesSection = () => {
   const [sortBy, setSortBy] = useAtom(sortByAtom)
@@ -27,7 +22,9 @@ const TopStoriesSection = () => {
         }}>
         <Typography variant={'title'}>Top stories</Typography>
         <div>
-          <Button Icon={BookmarkIcon}>View bookmark</Button>
+          <Link to={'/bookmarks'}>
+            <Button Icon={BookmarkIcon}>View bookmark</Button>
+          </Link>
           <Select
             value={sortBy}
             items={sortOptions}
@@ -74,21 +71,6 @@ const TopStoryGrid = styled('section', {
     '& > div:first-child': {
       gridArea: '1 / 1 / span 2 / span 1'
     }
-  }
-})
-
-const TitleSection = styled('section', {
-  display: 'flex',
-  width: '$maxWidth',
-  flexDirection: 'row',
-  justifyContent: 'space-between',
-  alignItems: 'flex-end',
-
-  '& > div': {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    gap: '22px'
   }
 })
 
