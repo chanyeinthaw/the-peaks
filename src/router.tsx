@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 
 import AppPage from 'app/pages/App.page'
+import HomePage from 'app/pages/Home/Home.page'
 
 const router = createBrowserRouter([
   {
@@ -9,7 +10,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '',
-        element: <div>Index</div>
+        element: <HomePage />
       },
       {
         path: 'view/*',
