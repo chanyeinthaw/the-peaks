@@ -59,7 +59,11 @@ const StoryRoot = styled('div', {
   flexDirection: 'column',
   alignItems: 'stretch',
 
-  boxShadow: '0 0 8px 2px #ccc',
+  boxShadow: '0 0 4px 0px rgba(0,0,0,.5)',
+
+  '&:hover': {
+    boxShadow: '0 0 6px 1px rgba(0,0,0,.4)'
+  },
 
   '& > img': {
     width: '100%',
