@@ -26,6 +26,7 @@ const NavbarRoot = styled('nav', {
   zIndex: 1,
   position: 'sticky',
   top: 0,
+  boxShadow: '0 2px 8px 0px rgba(0,0,0,.3)',
 
   display: 'grid',
   justifyItems: 'center',

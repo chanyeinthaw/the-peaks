@@ -59,6 +59,8 @@ const StoryRoot = styled('div', {
   flexDirection: 'column',
   alignItems: 'stretch',
 
+  boxShadow: '0 0 8px 2px #ccc',
+
   '& > img': {
     width: '100%',
     height: '100%',
