@@ -18,6 +18,10 @@ const router = createBrowserRouter([
         element: <BookmarksPage />
       },
       {
+        path: '/search',
+        element: <div>search</div>
+      },
+      {
         path: 'view/*',
         element: <div>id</div>
       }

@@ -1,5 +1,6 @@
 import { atom, useAtom } from 'jotai'
 import React, { useRef, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 import SearchIcon from 'app/components/icons/Search.icon'
 import useClickOutside from 'app/hooks/useClickOutside'
@@ -18,6 +19,8 @@ const SearchBox: React.FC<{
   const [state, setState] = useState<'closed' | undefined>('closed')
   const inputRef = useRef<HTMLInputElement>(null)
   const searchBoxRootRef = useRef<HTMLDivElement>(null)
+  const navigate = useNavigate()
+  const location = useLocation()
 
   const closeSearchBox = () => setState('closed')
 
@@ -28,11 +31,21 @@ const SearchBox: React.FC<{
     inputRef.current?.focus()
   }
 
-  const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+  const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value.trim().length > 0 && location.pathname !== '/search') {
+      navigate('/search')
+    }
+
+    if (e.target.value.trim().length === 0 && location.pathname === '/search') {
+      navigate(-1)
+    }
+
     setQuery(e.target.value)
+  }
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Escape') {
+      navigate(-1)
       closeSearchBox()
       setQuery('')
     }
