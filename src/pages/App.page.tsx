@@ -16,7 +16,7 @@ const globalStyles = globalCss({
   'html, body': { margin: 0, padding: 0 }
 })
 
-function App() {
+function AppPage() {
   globalStyles()
 
   return (
@@ -26,4 +26,4 @@ function App() {
   )
 }
 
-export default App
+export default AppPage

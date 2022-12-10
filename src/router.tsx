@@ -1,17 +1,22 @@
 import { createBrowserRouter } from 'react-router-dom'
 
-import App from 'app/App'
+import AppPage from 'app/pages/App.page'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />,
+    element: <AppPage />,
     children: [
       {
-        path: '/',
+        path: '',
         element: <div>Index</div>
+      },
+      {
+        path: 'view/*',
+        element: <div>id</div>
       }
-    ]
+    ],
+    errorElement: <div>Oops</div>
   }
 ])
 
