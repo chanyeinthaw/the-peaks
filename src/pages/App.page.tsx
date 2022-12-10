@@ -13,7 +13,10 @@ const globalStyles = globalCss({
 
     boxSizing: 'border-box'
   },
-  'html, body': { margin: 0, padding: 0 }
+  'html, body': { margin: 0, padding: 0 },
+  a: {
+    textDecoration: 'none'
+  }
 })
 
 function AppPage() {
