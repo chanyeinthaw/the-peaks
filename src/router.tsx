@@ -3,6 +3,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import AppPage from 'app/pages/App.page'
 import BookmarksPage from 'app/pages/Bookmarks/Bookmarks.page'
 import HomePage from 'app/pages/Home/Home.page'
+import SearchResultsPage from 'app/pages/SearchResults/SearchResults.page'
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/search',
-        element: <div>search</div>
+        element: <SearchResultsPage />
       },
       {
         path: 'view/*',
