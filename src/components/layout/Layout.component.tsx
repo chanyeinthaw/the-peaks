@@ -10,11 +10,18 @@ const Layout: React.FC<{
   return (
     <LayoutRoot>
       <Navbar />
-      {children}
+      <LayoutContent>{children}</LayoutContent>
       <Footer />
     </LayoutRoot>
   )
 }
+
+const LayoutContent = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  backgroundColor: '$white'
+})
 
 const LayoutRoot = styled('main', {
   display: 'flex',
