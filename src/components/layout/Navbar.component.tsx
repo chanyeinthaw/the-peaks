@@ -23,6 +23,7 @@ const Navbar = () => {
 }
 
 const NavbarRoot = styled('nav', {
+  zIndex: 1,
   position: 'sticky',
   top: 0,
 
