@@ -2,21 +2,13 @@ import dayjs from 'dayjs'
 import { createQuery } from 'react-query-kit'
 
 import getHTTPClient from 'app/http'
+import Story from 'app/types/Story'
 
 type Variables = {
   id: string
 }
 
-type StoryResponse = {
-  id: string
-  title: string
-  body: string
-  thumbnail: string | null
-  subtitle: string
-  date: dayjs.Dayjs
-}
-
-const useStoryQuery = createQuery<StoryResponse, Variables, Error>({
+const useStoryQuery = createQuery<Story, Variables, Error>({
   primaryKey: 'story',
   async queryFn({ queryKey: [_, variables] }) {
     const client = getHTTPClient()

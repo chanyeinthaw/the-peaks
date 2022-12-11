@@ -2,6 +2,7 @@ import React, { useMemo } from 'react'
 
 import Typography from 'app/components/shared/Typography'
 import { styled } from 'app/stitches'
+import { Category } from 'app/types/Story'
 
 const categoryColors = {
   sport: '$red',
@@ -11,7 +12,7 @@ const categoryColors = {
 
 type StoryProps = {
   variant: 'lg' | 'md' | 'sm' | 'xs'
-  category: keyof typeof categoryColors
+  category: Category
 }
 const Story: React.FC<StoryProps> = ({ variant, category }) => {
   const titleVariant = useMemo(() => {
