@@ -13,6 +13,8 @@
     "@radix-ui/react-select": "^1.1.2",
     "@stitches/react": "^1.2.8",
     "@tanstack/react-query": "^4.19.1",
+    "axios": "^1.2.1",
+    "dayjs": "^1.11.7",
     "immer": "^9.0.16",
     "jotai": "^1.11.1",
     "jotai-immer": "^0.1.0",
