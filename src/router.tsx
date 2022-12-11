@@ -25,7 +25,8 @@ const router = createBrowserRouter([
       },
       {
         path: 'story/*',
-        element: <StoryPage />
+        element: <StoryPage />,
+        errorElement: <div>Oops</div>
       }
     ],
     errorElement: <div>Oops</div>

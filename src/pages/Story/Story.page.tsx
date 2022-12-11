@@ -1,9 +1,24 @@
+import { useLocation } from 'react-router-dom'
+
 import Bookmark from 'app/components/icons/Bookmark.icon'
 import Button from 'app/components/shared/Button.component'
+import Loading from 'app/components/shared/Loading.component'
 import Typography from 'app/components/shared/Typography'
+import useStoryQuery from 'app/pages/Story/queries/useStoryQuery'
 import { styled } from 'app/stitches'
 
 const StoryPage = () => {
+  const location = useLocation()
+  const storyId = location.pathname.replace('/story/', '')
+  const { data, isLoading, isError, error } = useStoryQuery({
+    variables: {
+      id: storyId
+    }
+  })
+
+  if (isError) throw error
+  if (isLoading) return <Loading />
+
   return (
     <StoryPageRoot>
       <Button Icon={Bookmark}>Add bookmark</Button>
@@ -12,42 +27,32 @@ const StoryPage = () => {
           marginTop: '8px'
         }}
         variant={'date'}>
-        Fri 12 Jun 2020 06.40 BST
+        {data?.date.format('ddd D MMM YYYY HH.mm z')}
       </Typography>
       <article>
         <div className={'article-head'}>
-          <Typography variant={'articleTitle'}>
-            Global report: WHO warns of accelerating Covid-19 infections in
-            Africa
-          </Typography>
-          <Typography variant={'articleSubtitle'}>
-            Continent is seeing more cases spread to the provinces; Trump
-            supporters can’t sue over catching Covid-19 at rallies; Brazil
-            confirms 30,000 new cases
-          </Typography>
+          <Typography variant={'articleTitle'}>{data?.title}</Typography>
+          <Typography
+            variant={'articleSubtitle'}
+            dangerouslySetInnerHTML={{ __html: data?.subtitle ?? '' }}
+          />
         </div>
         <Typography
           as={'div'}
           className={'article-body'}
-          variant={'articleBody'}>
-          Est commodo dolore nostrud elit et laborum mollit minim esse
-          exercitation mollit ex ullamco. Commodo nostrud do velit. Est ullamco
-          tempor velit cillum dolore commodo ipsum est. Duis do cillum laboris
-          officia aute irure occaecat exercitation proident dolore nostrud anim
-          consectetur consequat. Est commodo dolore nostrud elit et laborum
-          mollit minim esse exercitation mollit ex ullamco. Commodo nostrud do
-          velit. Est ullamco tempor velit cillum dolore commodo ipsum est. Duis
-          do cillum laboris officia aute irure occaecat exercitation proident
-          dolore nostrud anim consectetur consequat.
-        </Typography>
-        <div className={'article-image'}>
-          <img src={'https://picsum.photos/200/200'} alt={'image'} />
-          <Typography variant={'caption'}>
-            A woman walks along a flooded road amidst a storm in the
-            Masiphumelele informal settlement in Cape Town Photograph: Nic
-            Bothma/EPA
-          </Typography>
-        </div>
+          variant={'articleBody'}
+          dangerouslySetInnerHTML={{ __html: data?.body ?? '' }}
+        />
+        {data?.thumbnail && (
+          <div className={'article-image'}>
+            <img src={data.thumbnail} alt={'image'} />
+            {/*<Typography variant={'caption'}>*/}
+            {/*  A woman walks along a flooded road amidst a storm in the*/}
+            {/*  Masiphumelele informal settlement in Cape Town Photograph: Nic*/}
+            {/*  Bothma/EPA*/}
+            {/*</Typography>*/}
+          </div>
+        )}
       </article>
     </StoryPageRoot>
   )

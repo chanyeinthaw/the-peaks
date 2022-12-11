@@ -5,7 +5,7 @@ import Layout from 'app/components/layout/Layout.component'
 import { globalCss } from 'app/stitches'
 
 const globalStyles = globalCss({
-  '*': {
+  body: {
     fontFamily: '$serif',
     fontSize: '16px',
     lineHeight: '24px',
