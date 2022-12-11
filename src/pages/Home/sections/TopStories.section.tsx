@@ -42,7 +42,7 @@ const TopStoryGrid = styled('section', {
     gridTemplateRows: 'repeat(2, auto)',
     gap: '30px',
 
-    '& > div:first-child': {
+    '& > article:first-child': {
       gridArea: '1 / 1 / span 2 / span 1'
     }
   }
