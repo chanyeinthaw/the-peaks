@@ -23,7 +23,7 @@ const useStoryQuery = createQuery<StoryResponse, Variables, Error>({
 
     const { response, error } = await client({
       method: 'GET',
-      url: `/${variables.id}-abc`,
+      url: `/${variables.id}`,
       params: {
         'show-fields': 'trailText,headline,body,thumbnail'
       }
