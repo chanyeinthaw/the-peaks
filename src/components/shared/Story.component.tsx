@@ -52,7 +52,7 @@ const Story: React.FC<StoryProps> = ({ variant, category }) => {
   )
 }
 
-const StoryRoot = styled('div', {
+const StoryRoot = styled('article', {
   cursor: 'pointer',
   position: 'relative',
   display: 'flex',

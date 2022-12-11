@@ -15,6 +15,14 @@ const Typography = styled('p', {
         lineHeight: '49px',
         fontWeight: 700
       },
+      date: {
+        fontSize: '12px',
+        lineHeight: '31px',
+        fontWeight: 400,
+        textTransform: 'uppercase',
+        letterSpacing: '0.83px',
+        fontFamily: '$sans'
+      },
       sectionTitle: {
         fontSize: '34px',
         lineHeight: '39px',
@@ -44,6 +52,33 @@ const Typography = styled('p', {
         lineHeight: '20px',
         fontWeight: 400,
         letterSpacing: '0.1px'
+      },
+      articleTitle: {
+        fontSize: '34px',
+        lineHeight: '39px',
+        fontWeight: 700,
+        letterSpacing: '0.07px'
+      },
+      articleSubtitle: {
+        fontSize: '20px',
+        lineHeight: '26px',
+        fontWeight: 700,
+        letterSpacing: '0.07px'
+      },
+      articleBody: {
+        fontSize: '14px',
+        lineHeight: '20px',
+        fontWeight: 400,
+        letterSpacing: '0.1px',
+        fontFamily: '$sans'
+      },
+      caption: {
+        fontSize: '12px',
+        lineHeight: '16px',
+        fontWeight: 400,
+        letterSpacing: '0.3px',
+        color: '$secondary',
+        fontFamily: '$sans'
       }
     }
   }

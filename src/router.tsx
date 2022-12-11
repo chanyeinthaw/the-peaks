@@ -4,6 +4,7 @@ import AppPage from 'app/pages/App.page'
 import BookmarksPage from 'app/pages/Bookmarks/Bookmarks.page'
 import HomePage from 'app/pages/Home/Home.page'
 import SearchResultsPage from 'app/pages/SearchResults/SearchResults.page'
+import StoryPage from 'app/pages/Story/Story.page'
 
 const router = createBrowserRouter([
   {
@@ -23,8 +24,8 @@ const router = createBrowserRouter([
         element: <SearchResultsPage />
       },
       {
-        path: 'view/*',
-        element: <div>id</div>
+        path: 'story/*',
+        element: <StoryPage />
       }
     ],
     errorElement: <div>Oops</div>
