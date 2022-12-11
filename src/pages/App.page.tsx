@@ -1,4 +1,5 @@
 import React from 'react'
+import { Toaster } from 'react-hot-toast'
 import { Outlet } from 'react-router-dom'
 
 import Layout from 'app/components/layout/Layout.component'
@@ -25,6 +26,12 @@ function AppPage() {
   return (
     <Layout>
       <Outlet />
+      <Toaster
+        position="bottom-center"
+        containerStyle={{
+          margin: '-16px'
+        }}
+      />
     </Layout>
   )
 }
