@@ -4,7 +4,15 @@ import Typography from 'app/components/shared/Typography'
 import { styled } from 'app/stitches'
 import { Category } from 'app/types/Story'
 
-const categoryColors = {
+const textVerticalOverflowEllipsis = (line: number) => ({
+  display: '-webkit-box',
+  WebkitLineClamp: line + '',
+  WebkitBoxOrient: 'vertical',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis'
+})
+
+const categoryColors: Record<string, string> = {
   sport: '$red',
   culture: '$amber',
   lifeandstyle: '$blue'
@@ -13,8 +21,20 @@ const categoryColors = {
 type StoryProps = {
   variant: 'lg' | 'md' | 'sm' | 'xs'
   category: Category
+  title: string
+  subtitle?: string
+  thumbnail: string | null
+
+  titleLineLimit?: number
 }
-const Story: React.FC<StoryProps> = ({ variant, category }) => {
+const Story: React.FC<StoryProps> = ({
+  title,
+  subtitle,
+  thumbnail,
+  variant,
+  category,
+  titleLineLimit = 2
+}) => {
   const titleVariant = useMemo(() => {
     if (['sm', 'xs'].includes(variant)) {
       return 'storyTitleSm'
@@ -32,21 +52,24 @@ const Story: React.FC<StoryProps> = ({ variant, category }) => {
       size={variant}
       css={{
         '& > div': {
-          borderColor: categoryColors[category]
+          borderColor: categoryColors[category] ?? '$green'
         }
       }}>
-      {variant !== 'xs' && (
-        <img src="https://picsum.photos/200/200" alt="image" />
-      )}
+      {variant !== 'xs' && thumbnail && <img src={thumbnail} alt={title} />}
       <div>
-        <Typography variant={titleVariant}>
-          Coronavirus live news: markets fall over fears of long US
+        <Typography
+          css={textVerticalOverflowEllipsis(titleLineLimit)}
+          variant={titleVariant}>
+          {title}
         </Typography>
-        {['lg', 'md'].includes(variant) && (
-          <Typography variant={'storySubtitle'}>
-            Republican senators on Capitol Hill have expressed their dismay at a
-            Donald Trump.
-          </Typography>
+        {['lg', 'md'].includes(variant) && subtitle && (
+          <Typography
+            css={textVerticalOverflowEllipsis(2)}
+            variant={'storySubtitle'}
+            dangerouslySetInnerHTML={{
+              __html: subtitle
+            }}
+          />
         )}
       </div>
     </StoryRoot>
@@ -78,7 +101,7 @@ const StoryRoot = styled('article', {
     gap: '5px',
     position: 'absolute',
     bottom: 0,
-    width: '100%',
+    minHeight: '136px',
     padding: '12px 10px',
     backgroundColor: '$primaryTransparent',
 

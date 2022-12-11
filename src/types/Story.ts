@@ -9,7 +9,7 @@ type Story = {
   date: dayjs.Dayjs
 }
 
-export type Category = 'sport' | 'culture' | 'lifeandstyle'
+export type Category = 'sport' | 'culture' | 'lifeandstyle' | string
 
 export type StoryWithCategory = Story & {
   category: Category
