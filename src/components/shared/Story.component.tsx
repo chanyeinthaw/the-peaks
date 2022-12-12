@@ -1,5 +1,8 @@
 import React, { useMemo } from 'react'
 
+import placeholder from 'app/assets/placeholder.svg'
+
+import Img from 'app/components/shared/Img.component'
 import Typography from 'app/components/shared/Typography'
 import { styled } from 'app/stitches'
 import { Category } from 'app/types/Story'
@@ -55,7 +58,13 @@ const Story: React.FC<StoryProps> = ({
           borderColor: categoryColors[category] ?? '$green'
         }
       }}>
-      {variant !== 'xs' && thumbnail && <img src={thumbnail} alt={title} />}
+      {variant !== 'xs' && (
+        <Img
+          placeholderSrc={placeholder}
+          src={thumbnail ?? undefined}
+          alt={title}
+        />
+      )}
       <div>
         <Typography
           css={textVerticalOverflowEllipsis(titleLineLimit)}

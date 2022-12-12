@@ -1,7 +1,10 @@
 import { useLocation } from 'react-router-dom'
 
+import placeholder from 'app/assets/placeholder.svg'
+
 import Bookmark from 'app/components/icons/Bookmark.icon'
 import Button from 'app/components/shared/Button.component'
+import Img from 'app/components/shared/Img.component'
 import Loading from 'app/components/shared/Loading.component'
 import Typography from 'app/components/shared/Typography'
 import showToast from 'app/helpers/toast'
@@ -71,7 +74,11 @@ const StoryPage = () => {
         />
         {data?.thumbnail && (
           <div className={'article-image'}>
-            <img src={data.thumbnail} alt={'image'} />
+            <Img
+              placeholderSrc={placeholder}
+              src={data.thumbnail}
+              alt={'image'}
+            />
             {/*<Typography variant={'caption'}>*/}
             {/*  A woman walks along a flooded road amidst a storm in the*/}
             {/*  Masiphumelele informal settlement in Cape Town Photograph: Nic*/}
