@@ -32,7 +32,19 @@ const StoryPage = () => {
   if (isLoading) return <Loading />
 
   return (
-    <StoryPageRoot>
+    <StoryPageRoot
+      css={
+        !data?.thumbnail
+          ? {
+              '& article': {
+                gridTemplateAreas: `
+                'article-head article-head'
+                'article-body article-body'
+              `
+              }
+            }
+          : undefined
+      }>
       <Button Icon={Bookmark} onClick={addOrRemoveBookmark}>
         {data!.bookmarked ? 'Remove bookmark' : 'Add bookmark'}
       </Button>
