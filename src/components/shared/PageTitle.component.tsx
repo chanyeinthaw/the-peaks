@@ -19,10 +19,23 @@ const PageTitle: React.FC<PageTitleProps> = ({
 }) => {
   const [sortBy, setSortBy] = useAtom(sortByAtom)
 
+  let options = sortOptions
+  if (variant === 'noBookmark') {
+    options = [
+      {
+        label: 'Bookmarked date',
+        value: 'bookmarked'
+      },
+      ...sortOptions
+    ]
+
+    options.pop()
+  }
+
   const select = (
     <Select
       value={sortBy}
-      items={sortOptions}
+      items={options}
       onChange={(value) => setSortBy(value)}
     />
   )
