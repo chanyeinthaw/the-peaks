@@ -2,13 +2,22 @@ import dayjs from 'dayjs'
 import { createQuery } from 'react-query-kit'
 
 import getHTTPClient from 'app/http'
-import Story from 'app/types/Story'
+import { loadBookmarkIds } from 'app/storage'
+import { StoryWithCategory } from 'app/types/Story'
 
 type Variables = {
   id: string
 }
 
-const useStoryQuery = createQuery<Story, Variables, Error>({
+type StoryWithBookmarkInformation = StoryWithCategory & {
+  bookmarked: boolean
+}
+
+const useStoryQuery = createQuery<
+  StoryWithBookmarkInformation,
+  Variables,
+  Error
+>({
   primaryKey: 'story',
   async queryFn({ queryKey: [_, variables] }) {
     const client = getHTTPClient()
@@ -27,6 +36,8 @@ const useStoryQuery = createQuery<Story, Variables, Error>({
     const apiResponse = response.data.response
     if (apiResponse.status !== 'ok') throw new Error('Error fetching story')
 
+    const bookmarkIds = loadBookmarkIds()
+
     const content = apiResponse.content
     return {
       id: variables.id,
@@ -34,7 +45,9 @@ const useStoryQuery = createQuery<Story, Variables, Error>({
       body: content.fields.body,
       thumbnail: content.fields.thumbnail ?? null,
       subtitle: content.fields.trailText,
-      date: dayjs(content.webPublicationDate)
+      date: dayjs(content.webPublicationDate),
+      bookmarked: bookmarkIds.includes(variables.id),
+      category: content.sectionId
     }
   }
 })

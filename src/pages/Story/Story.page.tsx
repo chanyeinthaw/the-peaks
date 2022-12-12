@@ -4,24 +4,38 @@ import Bookmark from 'app/components/icons/Bookmark.icon'
 import Button from 'app/components/shared/Button.component'
 import Loading from 'app/components/shared/Loading.component'
 import Typography from 'app/components/shared/Typography'
+import showToast from 'app/helpers/toast'
+import useAddOrRemoveBookmarkMutation from 'app/pages/Story/queries/useAddOrRemoveBookmarkMutation'
 import useStoryQuery from 'app/pages/Story/queries/useStoryQuery'
 import { styled } from 'app/stitches'
 
 const StoryPage = () => {
   const location = useLocation()
   const storyId = location.pathname.replace('/story/', '')
-  const { data, isLoading, isError, error } = useStoryQuery({
+  const { data, isLoading, isError, error, refetch } = useStoryQuery({
     variables: {
       id: storyId
     }
   })
+  const mutation = useAddOrRemoveBookmarkMutation({
+    async onSuccess(result) {
+      await refetch()
+      showToast(result)
+    }
+  })
+
+  const addOrRemoveBookmark = () => {
+    mutation.mutate(data!)
+  }
 
   if (isError) throw error
   if (isLoading) return <Loading />
 
   return (
     <StoryPageRoot>
-      <Button Icon={Bookmark}>Add bookmark</Button>
+      <Button Icon={Bookmark} onClick={addOrRemoveBookmark}>
+        {data!.bookmarked ? 'Remove bookmark' : 'Add bookmark'}
+      </Button>
       <Typography
         css={{
           marginTop: '8px'
@@ -69,7 +83,7 @@ const StoryPageRoot = styled('section', {
 
   '& article': {
     display: 'grid',
-    gridTemplateColumns: '1fr 445px',
+    gridTemplateColumns: '635px 445px',
     gridTemplateRows: 'repeat(2, auto)',
     gridTemplateAreas: `
       'article-head .'
@@ -88,7 +102,8 @@ const StoryPageRoot = styled('section', {
     },
 
     '& .article-body': {
-      gridArea: 'article-body'
+      gridArea: 'article-body',
+      overflow: 'auto'
     },
 
     '& .article-image': {

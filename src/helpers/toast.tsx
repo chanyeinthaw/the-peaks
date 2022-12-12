@@ -23,7 +23,9 @@ const toastOut = keyframes({
   }
 })
 
-const showToast = (type: 'bookmark-add' | 'bookmark-remove') => {
+export type ToastType = 'bookmark-add' | 'bookmark-remove'
+
+const showToast = (type: ToastType) => {
   const Icon = type === 'bookmark-add' ? Bookmark : BookmarkOutline
   const title =
     type === 'bookmark-add' ? 'saved to bookmarks' : 'removed from bookmarks'
@@ -47,7 +49,7 @@ const showToast = (type: 'bookmark-add' | 'bookmark-remove') => {
       />
     ),
     {
-      duration: 300000
+      duration: 3000
     }
   )
 }
