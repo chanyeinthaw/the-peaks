@@ -98,8 +98,8 @@ const StoryPageRoot = styled('section', {
     gridTemplateColumns: '635px 445px',
     gridTemplateRows: 'repeat(2, auto)',
     gridTemplateAreas: `
-      'article-head .'
-      'article-body article-image'
+      'article-head article-image'
+      'article-body article-body'
     `,
     rowGap: '14px',
     columnGap: '30px',
