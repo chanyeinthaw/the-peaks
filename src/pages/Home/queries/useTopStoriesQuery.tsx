@@ -24,9 +24,7 @@ const useTopStoriesQuery = createQuery<TopStoriesResponse, Variables, Error>({
       url: '/search',
       params: {
         'order-by': variables.sortBy,
-        'page-size': 50,
-        section: 'sport|culture|lifeandstyle',
-        'show-fields': 'trailText,headline,body,thumbnail'
+        'page-size': 50
       }
     })
 

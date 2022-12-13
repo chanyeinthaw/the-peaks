@@ -24,10 +24,7 @@ const useStoryQuery = createQuery<
 
     const { response, error } = await client({
       method: 'GET',
-      url: `/${variables.id}`,
-      params: {
-        'show-fields': 'trailText,headline,body,thumbnail'
-      }
+      url: `/${variables.id}`
     })
 
     if (error) throw new Error('Error fetching story')
