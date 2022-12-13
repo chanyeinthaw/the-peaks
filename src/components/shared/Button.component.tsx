@@ -34,8 +34,9 @@ const ButtonRoot = styled('button', {
   textTransform: 'uppercase',
   width: 'fit-content',
   cursor: 'pointer',
-  '&:focus, &:focus-visible': {
-    outline: '2px solid $primaryOverlay'
+  transition: '.3s ease',
+  '&:active': {
+    scale: 0.97
   },
   '&:hover': {
     backgroundColor: '$primaryTransparent'

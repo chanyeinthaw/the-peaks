@@ -98,6 +98,11 @@ const StoryRoot = styled('article', {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'stretch',
+  transition: '.3s ease',
+
+  '&:active': {
+    scale: 0.98
+  },
 
   boxShadow: '0 0 4px 0px rgba(0,0,0,.5)',
 
