@@ -117,6 +117,8 @@ const StoryRoot = styled('article', {
     gap: '5px',
     position: 'absolute',
     bottom: 0,
+    left: 0,
+    right: 0,
     padding: '12px 10px',
     backgroundColor: '$primaryTransparent',
 

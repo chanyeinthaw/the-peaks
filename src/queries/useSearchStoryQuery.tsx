@@ -31,6 +31,7 @@ const useSearchStoryQuery = createInfiniteQuery<
         'order-by': variables.sortBy,
         page: pageParam,
         'page-size': 15,
+        section: 'sport|culture|lifeandstyle',
         'show-fields': 'trailText,headline,body,thumbnail',
         ...(variables.query && { q: variables.query })
       }

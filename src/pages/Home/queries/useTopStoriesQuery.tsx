@@ -11,6 +11,7 @@ type Variables = {
 type TopStoriesResponse = {
   highlights: StoryWithCategory[]
   stories: StoryWithCategory[]
+  categorized: Record<string, StoryWithCategory[]>
 }
 
 const useTopStoriesQuery = createQuery<TopStoriesResponse, Variables, Error>({
@@ -23,7 +24,8 @@ const useTopStoriesQuery = createQuery<TopStoriesResponse, Variables, Error>({
       url: '/search',
       params: {
         'order-by': variables.sortBy,
-        'page-size': 8,
+        'page-size': 50,
+        section: 'sport|culture|lifeandstyle',
         'show-fields': 'trailText,headline,body,thumbnail'
       }
     })
@@ -36,13 +38,30 @@ const useTopStoriesQuery = createQuery<TopStoriesResponse, Variables, Error>({
 
     const results = apiResponse.results
 
+    const highlights = results
+      .slice(0, 5)
+      .map((result: any) => createStoryWithCategoryFromRaw(result))
+
+    const stories = results
+      .slice(5, 8)
+      .map((result: any) => createStoryWithCategoryFromRaw(result))
+
+    const categorized: Record<string, StoryWithCategory[]> = {}
+
+    results.slice(8).forEach((result: any) => {
+      if (!categorized.hasOwnProperty(result.sectionName)) {
+        categorized[result.sectionName] = []
+      }
+
+      categorized[result.sectionName].push(
+        createStoryWithCategoryFromRaw(result)
+      )
+    })
+
     return {
-      highlights: results
-        .slice(0, 5)
-        .map((result: any) => createStoryWithCategoryFromRaw(result)),
-      stories: results
-        .slice(5)
-        .map((result: any) => createStoryWithCategoryFromRaw(result))
+      highlights,
+      stories,
+      categorized
     }
   }
 })

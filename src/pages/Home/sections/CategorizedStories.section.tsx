@@ -1,29 +1,31 @@
+import React from 'react'
+import { Link } from 'react-router-dom'
+
 import Story from 'app/components/shared/Story.component'
 import StoryGroup from 'app/pages/Home/components/StoryGroup.component'
 import { styled } from 'app/stitches'
+import { StoryWithCategory } from 'app/types/Story'
 
-const CategorizedStoriesSection = () => {
+const CategorizedStoriesSection: React.FC<{
+  categorized: Record<string, StoryWithCategory[]>
+}> = ({ categorized }) => {
   return (
     <SectionRoot>
-      <StoryGroup title={'Sport'}>
-        <Story category={'sport'} variant={'md'} />
-        <Story category={'sport'} variant={'md'} />
-        <Story category={'sport'} variant={'md'} />
-        <Story category={'sport'} variant={'md'} />
-        <Story category={'sport'} variant={'md'} />
-      </StoryGroup>
-
-      <StoryGroup title={'Culture'}>
-        <Story category={'sport'} variant={'md'} />
-        <Story category={'sport'} variant={'md'} />
-        <Story category={'sport'} variant={'md'} />
-      </StoryGroup>
-
-      <StoryGroup title={'Life Style'}>
-        <Story category={'sport'} variant={'md'} />
-        <Story category={'sport'} variant={'md'} />
-        <Story category={'sport'} variant={'md'} />
-      </StoryGroup>
+      {Object.keys(categorized).map((category) => (
+        <StoryGroup title={category} key={category}>
+          {categorized[category].map((story) => (
+            <Link to={`/story/${story.id}`} key={story.id}>
+              <Story
+                variant={'md'}
+                category={story.category}
+                title={story.title}
+                subtitle={story.subtitle}
+                thumbnail={story.thumbnail}
+              />
+            </Link>
+          ))}
+        </StoryGroup>
+      ))}
     </SectionRoot>
   )
 }
