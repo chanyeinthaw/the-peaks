@@ -1,6 +1,6 @@
-import dayjs from 'dayjs'
 import { createQuery } from 'react-query-kit'
 
+import createStoryWithCategoryFromRaw from 'app/helpers/createStoryWithCategoryFromRaw'
 import getHTTPClient from 'app/http'
 import { loadBookmarkIds } from 'app/storage'
 import { StoryWithCategory } from 'app/types/Story'
@@ -39,16 +39,15 @@ const useStoryQuery = createQuery<
     const bookmarkIds = loadBookmarkIds()
 
     const content = apiResponse.content
-    return {
-      id: variables.id,
-      title: content.fields.headline,
-      body: content.fields.body,
-      thumbnail: content.fields.thumbnail ?? null,
-      subtitle: content.fields.trailText,
-      date: dayjs(content.webPublicationDate),
-      bookmarked: bookmarkIds.includes(variables.id),
-      category: content.sectionId
-    }
+    return createStoryWithCategoryFromRaw(
+      {
+        id: variables.id,
+        ...content
+      },
+      {
+        bookmarked: bookmarkIds.includes(variables.id)
+      }
+    ) as StoryWithBookmarkInformation
   }
 })
 

@@ -7,13 +7,15 @@ export type SvgIconProps = {
   color?: keyof typeof theme.colors
   viewBox?: string
   children?: React.ReactNode[] | React.ReactNode
+  css?: any
 }
 
 const SvgIcon: React.FC<SvgIconProps> = ({
   children,
   color,
   viewBox,
-  size = 24
+  size = 24,
+  css
 }) => {
   return (
     <StyledSvgIcon
@@ -21,6 +23,7 @@ const SvgIcon: React.FC<SvgIconProps> = ({
       height={size}
       className={SvgIconClasses.root}
       css={{
+        ...css,
         ...(color && {
           '& path': {
             fill: theme.colors[color]

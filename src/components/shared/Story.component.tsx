@@ -65,7 +65,14 @@ const Story: React.FC<StoryProps> = ({
           alt={title}
         />
       )}
-      <div>
+      <div
+        style={
+          variant === 'md'
+            ? {
+                minHeight: '136px'
+              }
+            : {}
+        }>
         <Typography
           css={textVerticalOverflowEllipsis(titleLineLimit)}
           variant={titleVariant}>
@@ -110,7 +117,6 @@ const StoryRoot = styled('article', {
     gap: '5px',
     position: 'absolute',
     bottom: 0,
-    minHeight: '136px',
     padding: '12px 10px',
     backgroundColor: '$primaryTransparent',
 
@@ -134,9 +140,9 @@ const StoryRoot = styled('article', {
         aspectRatio: '255 / 252'
       },
       xs: {
-        aspectRatio: '255 / 138',
+        height: '138px',
+        aspectRatio: 'unset',
         '& > div': {
-          width: '100%',
           height: '100%',
           position: 'unset',
           backgroundColor: '$primary'

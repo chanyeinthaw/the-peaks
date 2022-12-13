@@ -1,5 +1,6 @@
 import { createInfiniteQuery } from 'react-query-kit'
 
+import createStoryWithCategoryFromRaw from 'app/helpers/createStoryWithCategoryFromRaw'
 import getHTTPClient from 'app/http'
 import { StoryWithCategory } from 'app/types/Story'
 
@@ -48,15 +49,9 @@ const useSearchStoryQuery = createInfiniteQuery<
         apiResponse.currentPage < apiResponse.pages
           ? apiResponse.currentPage + 1
           : null,
-      stories: results.map((result: any) => ({
-        id: result.id,
-        title: result.fields.headline,
-        body: result.fields.body,
-        thumbnail: result.fields.thumbnail ?? null,
-        subtitle: result.fields.trailText,
-        date: result.webPublicationDate,
-        category: result.sectionId
-      }))
+      stories: results.map((result: any) =>
+        createStoryWithCategoryFromRaw(result)
+      )
     }
   }
 })
