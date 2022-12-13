@@ -6,7 +6,7 @@ import LoadingSpinner from 'app/components/shared/LoadingSpinner.component'
 import PageTitle from 'app/components/shared/PageTitle.component'
 import Story from 'app/components/shared/Story.component'
 import StoryGrid from 'app/pages/Home/components/StoryGrid.component'
-import useTopStoriesQuery from 'app/queries/useTopStoriesQuery'
+import useTopStoriesQuery from 'app/pages/Home/queries/useTopStoriesQuery'
 import { styled } from 'app/stitches'
 
 const TopStoriesSection = () => {
