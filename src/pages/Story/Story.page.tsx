@@ -102,7 +102,7 @@ const StoryPageRoot = styled('section', {
 
   '& article': {
     display: 'grid',
-    gridTemplateColumns: '635px 445px',
+    gridTemplateColumns: '1fr 345px',
     gridTemplateRows: 'repeat(2, auto)',
     gridTemplateAreas: `
       'article-head article-image'
@@ -110,6 +110,20 @@ const StoryPageRoot = styled('section', {
     `,
     rowGap: '14px',
     columnGap: '30px',
+
+    '@downSm': {
+      gridTemplateColumns: '1fr',
+      gridTemplateAreas: `
+        'article-image'
+        'article-head'
+        'article-body'
+      `,
+      gridTemplateRows: 'unset',
+
+      '& img': {
+        width: '$maxWidth'
+      }
+    },
 
     '& .article-head': {
       display: 'flex',

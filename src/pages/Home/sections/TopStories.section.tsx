@@ -74,6 +74,27 @@ const TopStoryGrid = styled('section', {
 
     '& > a:first-child': {
       gridArea: '1 / 1 / span 2 / span 1'
+    },
+
+    '@downLg': {
+      gridTemplateColumns: '1fr 1fr',
+      gridTemplateRows: 'min-content, repeat(2, 200px)',
+
+      '& > a:first-child': {
+        gridArea: '1 / 1 / span 1 / span 2'
+      }
+    }
+  },
+
+  '@downMd': {
+    '& > div:last-of-type': {
+      gridTemplateColumns: '1fr 1fr 1fr'
+    }
+  },
+
+  '@downXs': {
+    '& > div:last-of-type': {
+      gridTemplateColumns: '1fr'
     }
   }
 })

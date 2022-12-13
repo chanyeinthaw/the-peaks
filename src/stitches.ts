@@ -1,6 +1,15 @@
 import { createStitches } from '@stitches/react'
 
 export const { styled, keyframes, globalCss, theme } = createStitches({
+  media: {
+    downLg: '(max-width: 1280px)',
+
+    downMd: '(max-width: 1024px)',
+
+    downSm: '(max-width: 768px)',
+
+    downXs: '(max-width: 480px)'
+  },
   theme: {
     fonts: {
       serif: 'Georgia, serif',

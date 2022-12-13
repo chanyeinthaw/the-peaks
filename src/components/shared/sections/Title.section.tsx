@@ -12,6 +12,27 @@ const TitleSection = styled('section', {
     flexDirection: 'row',
     alignItems: 'flex-end',
     gap: '22px'
+  },
+
+  '@downMd': {
+    flexDirection: 'column',
+    alignItems: 'stretch',
+    gap: '24px'
+  },
+
+  '@downSm': {
+    '& > div': {
+      flexDirection: 'column',
+      alignItems: 'stretch',
+
+      '& > button': {
+        width: '100%'
+      }
+    },
+
+    '& > button': {
+      width: '100%'
+    }
   }
 })
 

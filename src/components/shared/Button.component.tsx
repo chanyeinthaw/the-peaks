@@ -24,6 +24,7 @@ const ButtonRoot = styled('button', {
   borderRadius: '4px',
   padding: '4px 12px',
   display: 'flex',
+  justifyContent: 'center',
   alignItems: 'center',
   gap: '6px',
   fontFamily: '$sans',
