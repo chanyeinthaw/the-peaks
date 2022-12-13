@@ -4,33 +4,37 @@ import Typography from 'app/components/shared/Typography'
 import { styled } from 'app/stitches'
 
 const ErrorPage = () => {
-  const error = useRouteError() as Error
+  const error = useRouteError() as any
 
-  return (
-    <ErrorPageRoot>
-      <Typography>
-        Oops! Something went wrong.&nbsp;
-        <Link to={'/'}>
+  if (error.statusText === 'Not Found')
+    return (
+      <ErrorPageRoot>
+        <Typography>
+          {error.statusText === 'Not Found' && 'You got lost? '}
+          {error.statusText !== 'Not Found' && 'Oops! Something went wrong. '}
+          <Link to={'/'}>
+            <Typography
+              css={{
+                textDecoration: 'underline'
+              }}
+              as="span">
+              Go to home page.
+            </Typography>
+          </Link>
+        </Typography>
+        {error.statusText !== 'Not Found' && (
           <Typography
             css={{
-              textDecoration: 'underline'
-            }}
-            as="span">
-            Go back.
+              padding: '4px 8px',
+              background: '$grey50',
+              color: '$secondary2',
+              fontFamily: '$sans'
+            }}>
+            {error.message}
           </Typography>
-        </Link>
-      </Typography>
-      <Typography
-        css={{
-          padding: '4px 8px',
-          background: '$grey50',
-          color: '$secondary2',
-          fontFamily: '$sans'
-        }}>
-        {error.message}
-      </Typography>
-    </ErrorPageRoot>
-  )
+        )}
+      </ErrorPageRoot>
+    )
 }
 
 const ErrorPageRoot = styled('div', {
