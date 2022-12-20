@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai'
-import { Fragment, useDeferredValue, useEffect } from 'react'
+import { Fragment, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 import sortByAtom from 'app/atoms/sortBy.atom'
@@ -7,13 +7,14 @@ import { searchQueryAtom } from 'app/components/layout/SearchBox.component'
 import Loading from 'app/components/shared/Loading.component'
 import PageTitle from 'app/components/shared/PageTitle.component'
 import Story from 'app/components/shared/Story.component'
+import useDebouncedValue from 'app/hooks/useDebouncedValue'
 import StoryGroup from 'app/pages/Home/components/StoryGroup.component'
 import useSearchStoryQuery from 'app/queries/useSearchStoryQuery'
 
 const SearchResultsPage = () => {
   const [query, setQuery] = useAtom(searchQueryAtom)
   const [sortBy] = useAtom(sortByAtom)
-  const deferredQuery = useDeferredValue(query)
+  const debouncedQuery = useDebouncedValue(query, 600)
   const {
     data,
     isLoading,
@@ -24,7 +25,7 @@ const SearchResultsPage = () => {
     fetchNextPage
   } = useSearchStoryQuery({
     variables: {
-      query: deferredQuery,
+      query: debouncedQuery,
       sortBy
     }
   })
