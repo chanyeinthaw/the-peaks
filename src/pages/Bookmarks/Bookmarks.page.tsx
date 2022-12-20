@@ -6,8 +6,8 @@ import { searchQueryAtom } from 'app/components/layout/SearchBox.component'
 import Loading from 'app/components/shared/Loading.component'
 import PageTitle from 'app/components/shared/PageTitle.component'
 import Story from 'app/components/shared/Story.component'
-import useBookmarksQuery from 'app/pages/Bookmarks/queries/useBookmarksQuery'
 import StoryGroup from 'app/pages/Home/components/StoryGroup.component'
+import useBookmarksQuery from 'app/queries/useBookmarksQuery'
 
 const BookmarksPage = () => {
   const [, setQuery] = useAtom(searchQueryAtom)

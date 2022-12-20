@@ -8,8 +8,8 @@ import Img from 'app/components/shared/Img.component'
 import Loading from 'app/components/shared/Loading.component'
 import Typography from 'app/components/shared/Typography'
 import showToast from 'app/helpers/toast'
-import useAddOrRemoveBookmarkMutation from 'app/pages/Story/queries/useAddOrRemoveBookmarkMutation'
-import useStoryQuery from 'app/pages/Story/queries/useStoryQuery'
+import useAddOrRemoveBookmarkMutation from 'app/queries/useAddOrRemoveBookmarkMutation'
+import useStoryQuery from 'app/queries/useStoryQuery'
 import { styled } from 'app/stitches'
 
 const StoryPage = () => {
